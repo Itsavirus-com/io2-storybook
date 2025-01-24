@@ -4,6 +4,8 @@
 import React from 'react'
 import { ButtonProps } from './button.type'
 import { KTIcon } from '../kt-icon/KTIcon'
+import { Button as BootstrapButton } from 'react-bootstrap'
+
 
 export const Button: React.FC<ButtonProps> = ({
   icon,
@@ -15,7 +17,7 @@ export const Button: React.FC<ButtonProps> = ({
   colorClass = 'primary',
   variant = 'solid',
   activeColorClass = 'light-primary',
-  iconSize = 'fs-2',
+  iconSize = 'fs-2 text-white',
   extraProps = {},
   type = 'button',
 }) => {
@@ -49,14 +51,14 @@ export const Button: React.FC<ButtonProps> = ({
   }
 
   return (
-    <button
+    <BootstrapButton
       onClick={onClick}
       type={!href ? type : undefined}
       className={getBaseClasses()}
       {...extraProps}
     >
-      {label && <span className={icon ? "ms-2" : ""}>{label}</span>}
+      {label && <span className={icon ? "ms-2 text-white" : "text-light"}>{label}</span>}
       {icon && <KTIcon iconName={icon} className={iconSize} />}
-    </button>
+    </BootstrapButton>
   )
 }
