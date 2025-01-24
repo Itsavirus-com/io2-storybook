@@ -1,0 +1,51 @@
+{
+  "name": "io2-storybook",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.26.0",
+    "@chromatic-com/storybook": "^3.2.4",
+    "@storybook/addon-essentials": "^8.5.1",
+    "@storybook/addon-interactions": "^8.5.1",
+    "@storybook/addon-links": "^8.5.1",
+    "@storybook/addon-onboarding": "^8.5.1",
+    "@storybook/addon-styling-webpack": "^1.0.1",
+    "@storybook/addon-themes": "^8.5.1",
+    "@storybook/addon-webpack5-compiler-swc": "^2.0.0",
+    "@storybook/blocks": "^8.5.1",
+    "@storybook/preset-scss": "^1.0.3",
+    "@storybook/react": "^8.5.1",
+    "@storybook/react-webpack5": "^8.5.1",
+    "@storybook/test": "^8.5.1",
+    "@types/node": "^22.10.8",
+    "@types/react": "^18.3.18",
+    "babel-loader": "^9.2.1",
+    "css-loader": "^7.1.2",
+    "prop-types": "^15.8.1",
+    "react-docgen-typescript": "^2.2.2",
+    "sass": "^1.83.4",
+    "sass-loader": "^16.0.4",
+    "storybook": "^8.5.1",
+    "style-loader": "^4.0.0",
+    "typescript": "^5.7.3",
+    "webpack": "^5.97.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "react": "^19.0.0",
+    "react-bootstrap": "^2.10.8",
+    "react-dom": "^19.0.0"
+  }
+}
