@@ -115,13 +115,13 @@ export const WithValidation: Story = {
         <FormProvider {...methods}>
           <div style={{ maxWidth: '300px' }}>
             <Story />
-              <Button
-              label="Submit"
-              colorClass="success"
-              variant="solid"
-              size="md"
+            <button
+              type="button"
+              className="btn btn-success"
               onClick={() => methods.handleSubmit((data) => console.log(data))()}
-            />
+            >
+              Submit
+            </button>
           </div>
         </FormProvider>
       )
