@@ -13,7 +13,7 @@ const meta: Meta<typeof Input> = {
   title: 'Components/Input',
   component: Input,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
   },
   tags: ['autodocs'],
   argTypes: {
@@ -69,17 +69,6 @@ export const Default: Story = {
 }
 
 /**
- * Input field marked as required, displaying an asterisk next to the label.
- */
-export const Required: Story = {
-  args: {
-    name: 'required-input',
-    label: 'Required Input',
-    isRequired: true,
-  },
-}
-
-/**
  * Example of an input field with form validation enabled.
  * This story demonstrates:
  * - Required field validation
@@ -126,5 +115,17 @@ export const Disabled: Story = {
     label: 'Disabled Input',
     disabled: true,
     placeholder: 'This input is disabled',
+  },
+} 
+
+/**
+ * Example of a textarea input field.
+ */
+export const TextArea: Story = {
+  args: {
+    name: 'text-area',
+    label: 'Text Area',
+    inputType: 'textarea',
+    placeholder: 'This is a text area',
   },
 } 

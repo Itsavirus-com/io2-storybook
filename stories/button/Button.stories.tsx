@@ -11,12 +11,12 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     size: {
       control: 'select', 
-      options: ['sm', 'lg'],
+      options: ['sm', 'md', 'lg'],
       description: 'Size of the button'
     },
     variant: {
       control: 'select',
-      options: ['solid', 'light', 'outline-dashed'],
+      options: ['solid', 'outline'],
       description: 'Style variant of the button'
     },
     colorClass: {
@@ -28,23 +28,9 @@ const meta: Meta<typeof Button> = {
         'info',
         'warning',
         'danger',
-        'light',
         'dark',
       ],
       description: 'Color theme of the button'
-    },
-    activeColorClass: {
-      control: 'select',
-      options: [
-        'light-primary',
-        'light-secondary',
-        'light-success',
-        'light-info',
-        'light-warning', 
-        'light-danger',
-        'light-dark'
-      ],
-      description: 'Active state color of the button'
     },
     label: {
       control: 'text',
@@ -52,17 +38,16 @@ const meta: Meta<typeof Button> = {
     },
     icon: {
       control: 'text',
-      description: 'Icon name for the button'
+      description: 'Icon name from KTIcon component'
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disabled state of the button'
     },
     iconSize: {
       control: 'select',
-      options: ['fs-1', 'fs-2', 'fs-3', 'fs-4', 'fs-5', 'fs-6', 'fs-7', 'fs-8', 'fs-9', 'fs-10'],
+      options: ['fs-1', 'fs-2', 'fs-3', 'fs-4', 'fs-5', 'fs-6'],
       description: 'Size of the icon'
-    },
-    type: {
-      control: 'select',
-      options: ['button', 'submit', 'reset'],
-      description: 'Button type attribute'
     },
     onClick: {
       action: 'clicked',
@@ -74,74 +59,53 @@ const meta: Meta<typeof Button> = {
 export default meta
 type Story = StoryObj<typeof Button>
 
+/**
+ * Default solid button with primary color
+ */
 export const Solid: Story = {
   args: {
-    label: 'Base Button',
-    icon: 'arrow-right',
-    size: 'sm',
+    label: 'Solid Button',
+    colorClass: 'success',
     variant: 'solid',
-    colorClass: 'primary',
-    activeColorClass: 'light-primary',
-    iconSize: 'fs-2'
+    size: 'md'
   }
 }
 
-export const Light: Story = {
+
+/**
+ * Outline variant with bordered style
+ */
+export const Outline: Story = {
   args: {
-    label: 'Light Button',
-    icon: 'arrow-right',
-    size: 'sm',
-    variant: 'light',
+    label: 'Outline Button',
     colorClass: 'primary',
-    activeColorClass: 'light-primary',
-    iconSize: 'fs-2'
+    variant: 'outline',
+    size: 'md'
   }
 }
 
-export const OutlineDashed: Story = {
-  args: {
-    label: 'Outline Dashed',
-    icon: 'arrow-right',
-    size: 'sm',
-    variant: 'outline-dashed',
-    colorClass: 'primary',
-    activeColorClass: 'light-primary',
-    iconSize: 'fs-2'
-  }
-}
-
+/**
+ * Icon-only button
+ */
 export const IconOnly: Story = {
   args: {
-    icon: 'arrow-right',
-    size: 'sm',
-    variant: 'solid',
+    icon: 'plus',
     colorClass: 'primary',
-    activeColorClass: 'light-primary',
+    variant: 'solid',
+    size: 'md',
     iconSize: 'fs-2'
   }
 }
 
-export const Small: Story = {
+/**
+ * Disabled button state
+ */
+export const Disabled: Story = {
   args: {
-    label: 'Small Button',
-    icon: 'arrow-right',
-    size: 'sm',
-    variant: 'solid',
+    label: 'Disabled Button',
     colorClass: 'primary',
-    activeColorClass: 'light-primary',
-    iconSize: 'fs-3'
+    variant: 'solid',
+    size: 'md',
+    disabled: true
   }
 }
-
-export const Large: Story = {
-  args: {
-    label: 'Large Button',
-    icon: 'arrow-right',
-    size: 'lg',
-    variant: 'solid',
-    colorClass: 'primary',
-    activeColorClass: 'light-primary',
-    iconSize: 'fs-2'
-  }
-}
-

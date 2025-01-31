@@ -2,19 +2,10 @@ import clsx from 'clsx'
 import { Form, FormControlProps } from 'react-bootstrap'
 import { useController, useFormContext } from 'react-hook-form'
 import React from 'react'
-
-type InputProps = FormControlProps & {
-  label?: string
-  name: string
-  containerClass?: string
-  step?: number
-  min?: number
-  max?: number
-  isRequired?: boolean
-}
+import { InputProps } from './input.type'
 
 export const Input = (props: InputProps) => {
-  const { label, name, containerClass, children, step, isRequired, ...otherProps } = props
+  const { label, name, containerClass, children, step, isRequired, inputType, ...otherProps } = props
 
   const { register, control } = useFormContext()
   const {
@@ -28,7 +19,7 @@ export const Input = (props: InputProps) => {
       )}
       <Form.Control
         id={name}
-        as="input"
+        as={inputType as any}
         isInvalid={invalid}
         step={step}
         {...register(name)}

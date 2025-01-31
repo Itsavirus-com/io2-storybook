@@ -3,9 +3,8 @@
 
 import React from 'react'
 import { ButtonProps } from './button.type'
-import { KTIcon } from '../kt-icon/KTIcon'
+import { KTIcon } from '../KTICon/KTIcon'
 import { Button as BootstrapButton } from 'react-bootstrap'
-
 
 export const Button: React.FC<ButtonProps> = ({
   icon,
@@ -16,49 +15,50 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
   colorClass = 'primary',
   variant = 'solid',
-  activeColorClass = 'light-primary',
-  iconSize = 'fs-2 text-white',
+  activeColorClass,
+  iconSize,
   extraProps = {},
   type = 'button',
+  disabled = false,
 }) => {
-  const getBaseClasses = () => {
-    const classes = ['btn']
+  // Determine button and icon classes based on variant
+  const getButtonClasses = () => {
+    const baseClasses = `btn btn-${size}`
     
-    // Size
-    classes.push(`btn-${size}`)
-    
-    // Style variant
-    if (variant === 'light') {
-      classes.push(`btn-light-${colorClass}`)
-    } else if (variant === 'outline-dashed') {
-      classes.push('btn-outline btn-outline-dashed', `btn-outline-${colorClass}`)
-    } else {
-      classes.push(`btn-${colorClass}`)
+    if (variant === 'outline') {
+      return `${baseClasses} btn-outline btn-outline-${colorClass} ${className}`
     }
     
-    // Icon only vs icon+label styling
-    classes.push(!label ? 'btn-icon' : 'd-flex align-items-center')
-    
-    // Active state
-    classes.push(`btn-active-${activeColorClass}`)
-    
-    // Custom classes
-    if (className) {
-      classes.push(className)
-    }
+    // solid variant (default)
+    return `${baseClasses} btn-${colorClass} ${className}`
+  }
 
-    return classes.join(' ')
+  const getIconClasses = () => {
+    if (variant === 'outline') {
+      return `fs-2 text-${colorClass}`
+    }
+    
+    return iconSize || 'fs-2 text-white'
+  }
+
+  const getLabelClasses = () => {
+    if (variant === 'outline') {
+      return `${icon ? 'ms-2' : ''} text-${colorClass}`
+    }
+    return `${icon ? 'ms-2' : ''} text-white`
   }
 
   return (
     <BootstrapButton
       onClick={onClick}
       type={!href ? type : undefined}
-      className={getBaseClasses()}
+      variant={variant === 'solid' ? colorClass : undefined}
+      className={getButtonClasses()}
+      disabled={disabled}
       {...extraProps}
     >
-      {label && <span className={icon ? "ms-2 text-white" : "text-light"}>{label}</span>}
-      {icon && <KTIcon iconName={icon} className={iconSize} />}
+      {icon && <KTIcon iconName={icon} className={getIconClasses()} />}
+      {label && <span className={getLabelClasses()}>{label}</span>}
     </BootstrapButton>
   )
 }
