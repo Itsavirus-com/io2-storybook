@@ -6,6 +6,8 @@ import '../stories/assets/keenicons/duotone/style.css';
 import '../stories/assets/keenicons/outline/style.css';
 import '../stories/assets/keenicons/solid/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'flatpickr/dist/flatpickr.css'
+import 'flatpickr/dist/plugins/monthSelect/style.css'
 
 const preview: Preview = {
   parameters: {
