@@ -6,7 +6,7 @@ import { Button as BootstrapButton } from 'react-bootstrap';
 import { KTIcon } from '../KTICon/KTIcon';
 import { ButtonProps } from './button.type';
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button = ({
   icon,
   label,
   href,
@@ -20,7 +20,7 @@ export const Button: React.FC<ButtonProps> = ({
   extraProps = {},
   type = 'button',
   disabled = false,
-}) => {
+}: ButtonProps) => {
   // Determine button and icon classes based on variant
   const getButtonClasses = () => {
     const baseClasses = `btn btn-${size}`;
@@ -57,8 +57,16 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       {...extraProps}
     >
-      {icon && <KTIcon iconName={icon} className={getIconClasses()} color={activeColorClass} />}
+      {icon && (
+        <KTIcon
+          iconName={icon}
+          className={getIconClasses()}
+          color={activeColorClass}
+        />
+      )}
       {label && <span className={getLabelClasses()}>{label}</span>}
     </BootstrapButton>
   );
 };
+
+export default Button; // Default export

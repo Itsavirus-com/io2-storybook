@@ -7,8 +7,7 @@ import { TableEmpty } from './TableEmpty';
 export const StaticTableBody = <TableValues extends Record<string, any>>(
   props: StaticTableBodyProps<TableValues>
 ) => {
-  const { columns, data, actions, customActions, actionBasePath, queryParams } =
-    props;
+  const { columns, data, actions, customActions, actionBasePath } = props;
   const hasActions = !!actions?.length || !!customActions?.length;
 
   if (!columns?.length) return null;
