@@ -1,7 +1,8 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Button } from '../../Button/Button';
 
+import { KTIcon } from '../../KTICon/KTIcon';
 import { FilterProps } from './filter.type';
 
 export const Filter = ({ children, onFilter }: FilterProps) => {
@@ -14,24 +15,14 @@ export const Filter = ({ children, onFilter }: FilterProps) => {
         onSubmit={onFilter && methods.handleSubmit(onFilter)}
         onReset={() => onFilter && onFilter({})}
       >
-        <Button
-          icon='category'
-          className='ms-2'
-          extraProps={{
-            'data-kt-menu-trigger': 'click',
-            'data-kt-menu-placement': 'bottom-end',
-            'data-kt-menu-flip': 'top-end',
-          }}
-        />
+        <KTIcon iconName='category' className='ms-2' />
 
         <div
           className='menu menu-sub menu-sub-dropdown w-250px w-md-300px'
           data-kt-menu='true'
         >
           <div className='px-7 py-5'>
-            <div className='fs-5 text-gray-900 fw-bolder'>
-              filter options
-            </div>
+            <div className='fs-5 text-gray-900 fw-bolder'>filter options</div>
           </div>
 
           <div className='separator border-gray-200'></div>
@@ -40,30 +31,9 @@ export const Filter = ({ children, onFilter }: FilterProps) => {
             {children}
 
             <div className='d-flex justify-content-end'>
-              <Button
-                type='reset'
-                icon='cross-square'
-                iconSize='fs-3'
-                className='me-2'
-                colorClass='light'
-                activeColorClass='light-primary'
-                extraProps={{
-                  'data-kt-menu-dismiss': 'true',
-                }}
-                label={'reset'}
-              />
+              <KTIcon iconName='cross-square' className='me-2' />
 
-              <Button
-                type='submit'
-                icon='check-square'
-                iconSize='fs-3'
-                className='me-2'
-                colorClass='primary'
-                extraProps={{
-                  'data-kt-menu-dismiss': 'true',
-                }}
-                label={'apply'}
-              />
+              <Button type='submit' />
             </div>
           </div>
         </div>

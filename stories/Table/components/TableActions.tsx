@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { Button } from '../../Button/Button';
+import { Button } from 'react-bootstrap';
 
+import { KTIcon } from '../../KTICon/KTIcon';
 import { TableActionsHeadProps, TableActionsProps } from './tableActions.type';
 
 export const TableActionsHead = ({
@@ -22,55 +23,25 @@ export const TableActions = (props: TableActionsProps) => {
     <td>
       <div className='d-flex justify-content-end flex-shrink-0'>
         {customActions?.map((customAction, index) => (
-          <Button key={index} {...customAction} />
+          <Button key={index} />
         ))}
 
         {actions?.includes('view') && (
-          /**
-           * Renders a view button that navigates to the detailed view of a data entry
-           * @param actionBasePath - Base URL path for the view action (optional)
-           * @param dataId - Unique identifier for the data record
-           * @param queryParams - Additional query parameters to append to the URL
-           */
-          <Button
-            href={`${actionBasePath ? `${actionBasePath}/${dataId}` : dataId}${
-              queryParams
-                ? `?${new URLSearchParams(queryParams).toString()}`
-                : ''
-            }`}
-            icon='book'
-            colorClass='light'
-            // activeColorClass='info'
-            iconSize='fs-4'
-            className='me-1'
-            variant='outline'
-          />
+          <button className='btn btn-sm'>
+            <KTIcon iconName='book' className='fs-4' />
+          </button>
         )}
 
         {actions?.includes('edit') && (
-          <Button
-            href={`${actionBasePath}/${dataId}/edit${
-              queryParams
-                ? `?${new URLSearchParams(queryParams).toString()}`
-                : ''
-            }`}
-            icon='pencil'
-            colorClass='light'
-            // activeColorClass='primary'
-            iconSize='fs-4'
-            className='me-1'
-            variant='outline'
-          />
+          <button className='btn btn-sm'>
+            <KTIcon iconName='pencil' className='fs-4' />
+          </button>
         )}
 
         {actions?.includes('delete') && (
-          <Button
-            icon='trash'
-            colorClass='light'
-            // activeColorClass='danger'
-            iconSize='fs-4'
-            variant='outline'
-          />
+          <button className='btn btn-sm'>
+            <KTIcon iconName='trash' className='fs-4' />
+          </button>
         )}
       </div>
     </td>
