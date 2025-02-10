@@ -1,8 +1,7 @@
 import clsx from 'clsx';
 import React, { useState } from 'react';
 
-import { Button } from '../Button/Button';
-
+import { Button } from 'react-bootstrap';
 import { Filter } from './components/Filter';
 import { StaticTableBody } from './components/StaticTableBody';
 import { TableProps } from './table.type';
@@ -42,7 +41,7 @@ export const Table = <TableValues extends Record<string, any>>(
 
           <div className='card-toolbar'>
             {toolbars?.map((toolbar, index) => (
-              <Button key={index} {...toolbar} />
+              <Button key={index} />
             ))}
 
             <Filter onFilter={setFilters}>{filterComponents}</Filter>
