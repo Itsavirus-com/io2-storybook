@@ -1,12 +1,35 @@
 // import { KTIcon } from '@/components/kt-icon/kt-icon'
 // import { Link } from '@/navigation'
 
-import React from 'react';
+import React, { FC } from 'react';
 import { Button as BootstrapButton } from 'react-bootstrap';
 import { KTIcon } from '../KTICon/KTIcon';
-import { ButtonProps } from './button.type';
 
-export const Button = ({
+type Props = {
+  icon?: string;
+  label?: string;
+  href?: string;
+  onClick?: () => void;
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+  colorClass?:
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'info'
+    | 'warning'
+    | 'danger'
+    | 'dark'
+    | 'light';
+  variant?: 'solid' | 'light' | 'outline';
+  activeColorClass?: string;
+  iconSize?: string;
+  extraProps?: Record<string, any>;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+};
+
+export const Button: FC<Props> = ({
   icon,
   label,
   href,
@@ -20,7 +43,7 @@ export const Button = ({
   extraProps = {},
   type = 'button',
   disabled = false,
-}: ButtonProps) => {
+}) => {
   // Determine button and icon classes based on variant
   const getButtonClasses = () => {
     const baseClasses = `btn btn-${size}`;
