@@ -8,7 +8,7 @@ const SidebarLogo = () => {
     <div className='app-sidebar-logo px-6' id='kt_app_sidebar_logo'>
       <img
         alt='Logo'
-        src={'/images/ngblu.png'}
+        src={'images/ngblu.png'}
         // src={logo}
         height={40}
         className='h-40px app-sidebar-logo-default'
