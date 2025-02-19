@@ -2,7 +2,7 @@
 // import { Link } from '@/navigation'
 
 import React, { FC } from 'react';
-import { Button as BootstrapButton } from 'react-bootstrap';
+import { Button as BootstrapButton, Spinner } from 'react-bootstrap';
 import { KTIcon } from '../KTICon/KTIcon';
 
 type Props = {
@@ -27,6 +27,7 @@ type Props = {
   extraProps?: Record<string, any>;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
+  loading?: boolean;
 };
 
 export const Button: FC<Props> = ({
@@ -43,13 +44,14 @@ export const Button: FC<Props> = ({
   extraProps = {},
   type = 'button',
   disabled = false,
+  loading = false,
 }) => {
   // Determine button and icon classes based on variant
   const getButtonClasses = () => {
     const baseClasses = `btn btn-${size}`;
 
     if (variant === 'outline') {
-      return `${baseClasses} btn-outline btn-outline-${colorClass} ${className}`;
+      return `${baseClasses} btn-outline btn-outline-${colorClass} ${className} btn-active-${activeColorClass}`;
     }
 
     // solid variant (default)
@@ -77,17 +79,26 @@ export const Button: FC<Props> = ({
       type={!href ? type : undefined}
       variant={variant === 'solid' ? colorClass : undefined}
       className={getButtonClasses()}
-      disabled={disabled}
+      disabled={disabled || loading}
       {...extraProps}
     >
-      {icon && (
-        <KTIcon
-          iconName={icon}
-          className={getIconClasses()}
-          color={activeColorClass}
-        />
+      {loading ? (
+        <>
+          <Spinner size='sm' animation='border' />{' '}
+          <span className={getLabelClasses()}>{label || 'Loading...'}</span>
+        </>
+      ) : (
+        <>
+          {icon && (
+            <KTIcon
+              iconName={icon}
+              className={getIconClasses()}
+              color={activeColorClass}
+            />
+          )}
+          {label && <span className={getLabelClasses()}>{label}</span>}
+        </>
       )}
-      {label && <span className={getLabelClasses()}>{label}</span>}
     </BootstrapButton>
   );
 };

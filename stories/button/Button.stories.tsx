@@ -10,7 +10,7 @@ const meta: Meta<typeof Button> = {
   tags: ['autodocs'],
   argTypes: {
     size: {
-      control: 'select', 
+      control: 'select',
       options: ['sm', 'md', 'lg'],
       description: 'Size of the button'
     },
@@ -23,7 +23,7 @@ const meta: Meta<typeof Button> = {
       control: 'select',
       options: [
         'primary',
-        'secondary', 
+        'secondary',
         'success',
         'info',
         'warning',
@@ -67,7 +67,8 @@ export const Solid: Story = {
     label: 'Solid Button',
     colorClass: 'success',
     variant: 'solid',
-    size: 'md'
+    size: 'md',
+    activeColorClass:'success'
   }
 }
 
@@ -80,9 +81,10 @@ export const Outline: Story = {
     label: 'Outline Button',
     colorClass: 'primary',
     variant: 'outline',
-    size: 'md'
-  }
-}
+    size: 'md',
+    activeColorClass: 'primary',
+  },
+};
 
 /**
  * Icon-only button
@@ -90,12 +92,13 @@ export const Outline: Story = {
 export const IconOnly: Story = {
   args: {
     icon: 'plus',
-    colorClass: 'primary',
+    colorClass: 'light',
     variant: 'solid',
     size: 'md',
-    iconSize: 'fs-2'
-  }
-}
+    activeColorClass: 'light-primary',
+    iconSize: 'fs-2',
+  },
+};
 
 /**
  * Disabled button state
@@ -109,3 +112,16 @@ export const Disabled: Story = {
     disabled: true
   }
 }
+
+/**
+ * Loading button state
+ */
+export const Loading: Story = {
+  args: {
+    label: 'Loading Button',
+    colorClass: 'success',
+    variant: 'solid',
+    size: 'md',
+    loading: true,
+  },
+};
