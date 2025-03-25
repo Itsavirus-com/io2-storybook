@@ -1,32 +1,33 @@
-import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
-import { FormProvider, useForm } from 'react-hook-form'
-import { SelectDropdown } from './SelectDropdown'
-import * as yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { Button } from '../Button/Button'
+import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import { SelectDropdown } from './SelectDropdown';
 
 // Mock data
 const mockOptions = [
   { id: '1', name: 'Option 1', code: 'OPT1' },
   { id: '2', name: 'Option 2', code: 'OPT2' },
   { id: '3', name: 'Option 3', code: 'OPT3' },
-]
+];
 
 // Wrapper component to provide form context
-const FormWrapper = ({ children }: { children: React.ReactNode }) => {
+const FormWrapper = ({
+  children,
+  defaultValues = { select: '' },
+}: {
+  children: React.ReactNode;
+  defaultValues?: any;
+}) => {
   const methods = useForm({
-    defaultValues: {
-      select: ''
-    }
-  })
-  
+    defaultValues,
+  });
+
   return (
-    <FormProvider {...methods}>
-      {children}
-    </FormProvider>
-  )
-}
+    <div style={{ maxWidth: '300px' }}>
+      <FormProvider {...methods}>{children}</FormProvider>
+    </div>
+  );
+};
 
 const meta = {
   title: 'Components/Select Dropdown',
@@ -42,10 +43,10 @@ const meta = {
     ),
   ],
   tags: ['autodocs'],
-} satisfies Meta<typeof SelectDropdown>
+} satisfies Meta<typeof SelectDropdown>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 /**
  * Default Select component with options.
@@ -57,11 +58,11 @@ export const Default: Story = {
     options: mockOptions,
     option: {
       label: (value) => value.name,
-      value: (value) => value.id
+      value: (value) => value.id,
     },
     isRequired: true,
   },
-}
+};
 
 /**
  * Example of a disabled Select component.
@@ -71,7 +72,7 @@ export const Disabled: Story = {
     ...Default.args,
     disabled: true,
   },
-}
+};
 
 /**
  * Example of a Select component with loading state.
@@ -81,50 +82,26 @@ export const WithLoading: Story = {
     ...Default.args,
     isLoading: true,
   },
-}
+};
 
 /**
- * Example of a Select component with form validation enabled.
- * This story demonstrates:
- * - Required field validation
- * - Real-time validation on change
- * - Form submission handling
+ * Example of a multi-select component.
  */
-export const WithValidation: Story = {
+export const MultiSelect: Story = {
   args: {
     ...Default.args,
-    name: 'select',
-    label: 'Select Dropdown with Validation',
-    isRequired: true,
+    name: 'multiSelect',
+    label: 'Multi Select',
+    isMulti: true,
   },
   decorators: [
-    (Story) => {
-      const methods = useForm({
-        mode: 'onChange',
-        defaultValues: {
-          'select': ''
-        },
-        resolver: yupResolver(yup.object({
-          'select': yup.string()
-            .required('This field is required')
-            .test('not-zero', 'Please select an option', value => value !== '0')
-        }))
-      })
-
-      return (
-        <FormProvider {...methods}>
-          <div style={{ maxWidth: '300px' }}>
-            <Story />
-            <button
-              type="button"
-              className="btn btn-success"
-              onClick={() => methods.handleSubmit((data) => console.log(data))()}
-            >
-              Submit
-            </button>
-          </div>
-        </FormProvider>
-      )
-    },
+    (Story) => (
+      <FormWrapper defaultValues={{ multiSelect: [] }}>
+        <div style={{ maxWidth: '300px' }}>
+          <Story />
+          <pre className='mt-4'>Selected values will be an array</pre>
+        </div>
+      </FormWrapper>
+    ),
   ],
-}
+};
